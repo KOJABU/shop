@@ -1,0 +1,23 @@
+{%extends 'main/base.html'%}
+{% load static %}
+    {%block title%}     
+    <title>Main page</title>
+{%endblock%} 
+
+{%block content%}  
+<main style = "margin-left: 10%;">
+     
+    <h1>This is {{item.name}}</h1>
+    <p >{{item.description}}</p>
+    <p>{{item.category}}</p>
+    <img src="{{item.photo.url}}" height="300px">
+    <form action="{% url 'cart:cart_add' item.id %}" method="post"> 
+        {{ cart_product_form }}
+        {% csrf_token %}
+
+    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Add to Cart"></input>    
+    </form>
+    
+    
+</main>
+{%endblock%} 

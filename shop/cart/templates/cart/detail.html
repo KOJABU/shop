@@ -1,0 +1,37 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<div style="margin-left: 10%;">
+    <h1>Shopping Cart</h1>
+</div>
+
+
+<div style="margin-left: 10%;">
+    {% for item in cart %}
+    {% with product=item.product %}
+        <div>
+            <div>
+                 <img src="/media/{{product.photo}}" height="300" width="500">
+            </div>
+           <p> {{ product.name }} </p>
+           <p> {{ product.price }} </p>
+           <form action="{% url 'cart:cart_add' product.id %}" method="post">
+           {%csrf_token%}
+           {{ item.update_quantity_form.quantity }}
+           {{ item.update_quantity_form.update }}
+           <input  type="submit" value="Update"></input>    
+            </form>
+        </div>
+        <div>
+            {{ item.total_price }}
+        </div>
+    {% endwith %}
+    {% endfor %}
+</div>
+
+<div style="margin-left: 10%;">
+    Total Pice
+    <small>{{ cart.get_total_price }}</small>
+</div>
+{% endblock %}

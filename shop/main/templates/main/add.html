@@ -1,0 +1,18 @@
+{%extends 'main/base.html'%}
+{% load static %}
+    {%block title%}     
+    <title>Main page</title>
+{%endblock%} 
+
+{%block content%}  
+<main style = "margin-left: 10%; margin-top: 10%;" >
+    <form method="post">
+        {{ add_form }}
+        {% csrf_token %}
+
+        <input type="submit" value="Add product"> 
+    </form> 
+    
+    
+</main>
+{%endblock%} 
